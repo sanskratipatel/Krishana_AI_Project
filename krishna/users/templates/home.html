@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna AI - Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="{% static 'images/main logo.jpg' %}" alt="Peacock Feather">
+            <h1>Krishna AI</h1>
+        </div>
+        <a href="{% url 'login' %}" class="login-btn">Login</a>
+    </header>
+
+    <!-- Main Section -->
+    <div class="container">
+        <img src="{% static 'images/images.jpg' %}" alt="Krishna Flute" class="flute-img">
+        <h1>Welcome to Krishna AI</h1>
+        <p class="subtitle">"Divine Guidance, Anytime, Anywhere"</p>
+
+        <button class="chat-btn" onclick="openChat()">
+            <i class="fas fa-comments"></i> Chat with Krishna
+        </button>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-screen" id="chatScreen">
+        <div class="chat-container">
+            <div class="chat-header">
+                <span>🕉 Krishna AI Chat</span>
+                <button class="close-btn" onclick="closeChat()">✖</button>
+            </div>
+            <div class="chat-body">
+                <p>How can I assist you today?</p>
+            </div>
+            <input type="text" class="chat-input" placeholder="Type your message...">
+        </div>
+    </div>
+
+    
+</body>
+</html>

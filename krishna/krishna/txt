@@ -1,0 +1,27 @@
+chatbot_project/
+│── krishana/               # Main Django project folder
+│   │── __init__.py
+│   │── settings.py        # Project settings
+│   │── urls.py            # Project-wide URL configuration
+│   │── asgi.py
+│   │── wsgi.py
+│── users/                   # User Authentication App
+│   │── migrations/
+│   │── __init__.py
+│   │── admin.py           # Admin panel registration
+│   │── apps.py
+│   │── models.py          # Database models for users
+│   │── views.py           # Logic for authentication
+│   │── urls.py            # URL routing for users
+│   │── templates/         # Folder for HTML pages
+│   │   │── login.html     # Login page
+│   │   │── signup.html    # Signup page
+│   │── static/            # Folder for CSS & JS files
+│   │   │── css/
+│   │   │   │── style.css  # Styling for login/signup
+│   │   │── js/
+│   │   │   │── theme.js   # JavaScript for theme switching
+│── CHATbot/               # Chatbot app (No change here)
+│   │── ...
+│── db.sqlite3             # SQLite database
+│── manage.py              # Django CLI utility
