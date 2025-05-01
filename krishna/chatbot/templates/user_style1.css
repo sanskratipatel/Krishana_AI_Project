@@ -1,0 +1,171 @@
+/* General Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Left corner */
+.left-corner {
+    display: flex;
+    gap: 10px;
+}
+
+/* Center corner */
+.center-corner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* Right corner */
+.right-corner {
+    position: relative;
+}
+
+/* Profile Button */
+.profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Bottom Left Dark Mode Button */
+.bottom-left-corner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-left-corner button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When dropdown is active */
+.profile-dropdown.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Dark mode for whole body */
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+/* Dark mode navbar */
+.dark-mode .navbar {
+    background: rgba(30, 30, 30, 0.9);
+}
+
+/* Dark mode chat-container */
+.dark-mode .chat-container {
+    background: #1e1e1e;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Dark mode chatbox */
+.dark-mode .chat-box {
+    background: #2a2a2a;
+    border: 1px solid #555;
+}
+
+/* Dark mode user message bubble */
+.dark-mode .user-message {
+    background-color: #4a4a4a;
+    color: #ffd700;
+}
+
+/* Dark mode bot message bubble */
+.dark-mode .bot-message {
+    background-color: #333;
+    color: #00ffd0;
+}
+
+/* Dark mode input textarea */
+.dark-mode textarea#user-input {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+/* Dark mode buttons */
+.dark-mode button {
+    background: #555;
+    color: #fff;
+}
+
+/* Dark mode language buttons */
+.dark-mode .language-btn {
+    background-color: #555;
+}
+
+/* Dark mode for profile dropdown */
+.dark-mode .profile-dropdown {
+    background-color: #1e1e1e;
+    border: 1px solid #555;
+}
+
+.dark-mode .profile-dropdown a {
+    color: #ddd;
+}
+
+.dark-mode .profile-dropdown a:hover {
+    background-color: #333;
+}
+
+/* Dark mode bottom corner button */
+.dark-mode .bottom-left-corner button {
+    background-color: #555;
+}
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+

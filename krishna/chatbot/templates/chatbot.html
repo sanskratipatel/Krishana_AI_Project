@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <div class="button-group">
+        <button onclick="setLanguage('hi')" class="language-btn" data-lang="hi">हिन्दी (Default)</button>
+        <button onclick="setLanguage('en')" class="language-btn" data-lang="en">English</button>
+    </div>
+    <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (localStorage.getItem("darkMode") === "true") {
+                document.body.classList.add("dark-mode");
+            }
+        });
+    </script>
     <div class="chat-container">
         <h2>Chatbot</h2>
         <div class="chat-box" id="chat-box">
@@ -17,6 +35,5 @@
             <button id="send-btn">Send</button>
         </div>
     </div>
-    <script src="{% static 'js/chatbot.js' %}"></script>
 </body>
 </html>

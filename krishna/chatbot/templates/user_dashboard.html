@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet" href="user_styles.css">
+    <script src="chatbot1.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Top Bar -->
+    <div class="navbar">
+        <!-- Left: Language Buttons -->
+        <div class="left-corner">
+            <button onclick="setLanguage('hi')" class="language-btn" data-lang="hi">हिन्दी</button>
+            <button onclick="setLanguage('en')" class="language-btn" data-lang="en">English</button>
+        </div>
+
+        <!-- Center: Welcome Text -->
+        <div class="center-corner">
+            <h2 id="welcome-text">Welcome, User! Krishna AI</h2>
+        </div>
+
+        <!-- Right: Profile Icon -->
+        <div class="right-corner">
+            <button class="profile-btn" id="profileBtn">
+                <img src="Sample_User_Icon.png" alt="User Profile" style="width: 30px; height: 30px; border-radius: 50%;">
+            </button>
+            <!-- Dropdown menu hidden initially -->
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div class="dashboard-container">
+        <img src="krishna_flute1.jpg" alt="Krishna Flute" class="dashboard-image">
+        <p>Chat with our AI Assistant</p>
+    </div>
+
+    <div class="chat-wrapper">
+        <!-- Left Sidebar: History -->
+        <div class="chat-history-panel">
+            <h3>Your History</h3>
+            <input type="text" id="search-history" placeholder="Search messages..." />
+            <button onclick="loadHistory()">🔍</button>
+            <div id="chat-history" class="history-box"></div>
+            <button id="load-more-btn" style="display: none;" onclick="loadMoreHistory()">📜 View More</button>
+        </div>
+    
+        <!-- Right Main Chat -->
+        <div class="chat-container">
+            <h2>Chatbot</h2>
+            <div class="chat-box" id="chat-box">
+                <div class="message bot-message">Hello! How can I assist you?</div>
+            </div>
+            <div class="input-container">
+                <textarea id="user-input" placeholder="Type a message..." rows="1"></textarea>
+                <button id="send-btn">Send</button>
+                <button id="speak-btn">🎤 Speak</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Bottom Left Corner Dark Mode -->
+    <div class="bottom-left-corner">
+        <button onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+    </div>
+
+</body>
+</html>
+
+
+

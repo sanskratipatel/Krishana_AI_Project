@@ -29,7 +29,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser  # Ensure you have a CustomUser model if using a custom user model
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .models import CustomUser, ChatbotMessage # Ensure you have a CustomUser model if using a custom user model
 
 # Home Page View
 def home_view(request):
@@ -55,8 +59,9 @@ def signup_view(request):
             user.username = user.email  # Ensures username is set to email
             user.save()
             login(request, user)
-            return redirect("home")  # Redirects to home page after signup
+            return redirect("user_dashboard.html")  # Redirects to home page after signup
     else:
         form = UserCreationForm()
     return render(request, "signup.html", {"form": form})
+
 

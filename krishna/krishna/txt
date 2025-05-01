@@ -22,6 +22,19 @@ chatbot_project/
 │   │   │── js/
 │   │   │   │── theme.js   # JavaScript for theme switching
 │── CHATbot/               # Chatbot app (No change here)
-│   │── ...
+│   │── __init__.py
+    |── admin.py
+    |──  apps.py
+    |──  models.py
+    |──  tests.py
+    |──  urls.py 
+    |──  views.py
+    |──  templates/
+        |──  Chatbot.html
+        |──  user_dashboard.html
+    |──  static/
+        |──  chatbot.js
+        |──  style.css
+        |──  images/
 │── db.sqlite3             # SQLite database
 │── manage.py              # Django CLI utility
