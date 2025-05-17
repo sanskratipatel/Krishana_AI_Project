@@ -1,29 +1,75 @@
+
+
 {% load static %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/theme.js' %}" defer></script>
+    <title>Sign Up - Krishna AI</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body class="theme-light">
-    <button id="theme-toggle">Toggle Theme</button>
-
-    <div class="form-container">
-        <h2>Sign Up</h2>
-        <form method="post">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password1" placeholder="Password" required>
-            <input type="password" name="password2" placeholder="Confirm Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<body>
+    {% if messages %}
+    <div class="message-box">
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
     </div>
+    {% endif %}
+
+    <div class="overlay" id="overlay"></div>
+    <div class="login-popup" id="loginPopup">
+        <div class="login-box">
+            <button class="back-button" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            
+            <h2>Create Account</h2>
+            <p class="login-subtitle">Join Krishna AI by creating an account</p>
+
+            <!-- ✅ Email/Password Signup Form -->
+            <form method="POST" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" class="login-input" required>
+                <input type="email" name="email" placeholder="Email" class="login-input" required>
+                
+                <!-- Password Field -->
+                <div class="password-container">
+                    <input type="password" name="password1" id="password1" placeholder="Password" class="login-input" required>
+                    <span class="toggle-password" onclick="togglePassword('password1', 'eyeIcon1')">
+                        <i class="fas fa-eye" id="eyeIcon1"></i>
+                    </span>
+                </div>
+                
+                <!-- Confirm Password Field -->
+                <div class="password-container">
+                    <input type="password" name="password2" id="password2" placeholder="Confirm Password" class="login-input" required>
+                    <span class="toggle-password" onclick="togglePassword('password2', 'eyeIcon2')">
+                        <i class="fas fa-eye" id="eyeIcon2"></i>
+                    </span>
+                </div>
+
+                <button type="submit" class="login-submit">Sign Up</button>
+            </form>
+
+            <p class="or-separator">OR</p>
+
+            <!-- ✅ Google/GitHub Signup Buttons -->
+            <div class="social-login">
+                <a href="{% url 'google-login' %}" class="google-btn">
+                    <i class="fab fa-google"></i> Signup with Google
+                </a>
+                <a href="{% url 'github-login' %}" class="github-btn">
+                    <i class="fab fa-github"></i> Signup with GitHub
+                </a>
+            </div>
+
+            <p class="signup-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/signup.js' %}"></script>
 </body>
 </html>

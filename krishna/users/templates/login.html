@@ -1,4 +1,6 @@
-<!-- {% load static %}
+
+
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,218 +10,52 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'js/login.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(to right, #FDF6EC, #E6CCB2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        .login-popup {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-box {
-            width: 450px;
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .close-login {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            border: none;
-            background: none;
-            font-size: 22px;
-            cursor: pointer;
-            color: #D35400;
-        }
-
-        .close-login:hover {
-            color: red;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .password-container {
-            position: relative;
-            width: 100%;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 18px;
-            color: #777;
-        }
-
-        .login-submit {
-            width: 100%;
-            background: #16A085;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-top: 18px;
-            transition: 0.3s;
-        }
-
-        .login-submit:hover {
-            background: #138D75;
-        }
-
-        .forgot-password, .signup-link {
-            margin-top: 15px;
-        }
-
-        .forgot-password a, .signup-link a {
-            color: #D35400;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .forgot-password a:hover, .signup-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
-<body>
-    <div class="login-popup" id="loginPopup">
-        <div class="login-box">
-            <button class="close-login" onclick="redirectToHome()">&times;</button>
-            <h2>Login</h2>
-            <p class="login-subtitle">Welcome back! Please login to continue.</p>
-
-            <input type="email" placeholder="Email" class="login-input" id="email" required>
-
-            <div class="password-container">
-                <input type="password" placeholder="Password" class="login-input" id="password" required>
-                <span class="toggle-password" onclick="togglePassword()">
-                    <i class="fas fa-eye" id="eyeIcon"></i>
-                </span>
-            </div>
-
-            <button class="login-submit" onclick="validateLogin()">Login</button>
-
-            <p class="forgot-password"><a href="#">Forgot Password?</a></p>
-            <p class="signup-link">New here? <a href="signup.html">Sign up</a></p>
-        </div>
+<body> 
+    {% if messages %}
+    <div class="message-box">
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
     </div>
+    {% endif %}
 
-    <script>
-        function validateLogin() {
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-
-            if (email === "" || password === "") {
-                alert("Please fill in all fields before logging in.");
-                return;
-            }
-
-            if (email === "test@gmail.com" && password === "1234") {
-                alert("Login Successful! Redirecting...");
-                window.location.href = "index.html";
-            } else {
-                alert("Invalid credentials. Please try again.");
-            }
-        }
-
-        function togglePassword() {
-            let passwordField = document.getElementById("password");
-            let eyeIcon = document.getElementById("eyeIcon");
-
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                eyeIcon.classList.remove("fa-eye");
-                eyeIcon.classList.add("fa-eye-slash");
-            } else {
-                passwordField.type = "password";
-                eyeIcon.classList.remove("fa-eye-slash");
-                eyeIcon.classList.add("fa-eye");
-            }
-        }
-
-        function redirectToHome() {
-            window.location.href = "index.html";
-        }
-    </script>
-</body>
-</html> -->
-
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Krishna AI</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/login.js' %}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
     <div class="overlay" id="overlay"></div>
     <div class="login-popup" id="loginPopup">
         <div class="login-box">
-            <!-- <button class="close-login" onclick="closeLogin()">&times;</button> -->/
             <button class="back-button" onclick="goBack()">
                 <i class="fas fa-arrow-left"></i> Back
             </button>
             
             <h2>Welcome Back</h2>
             <p class="login-subtitle">Login to continue your journey with Krishna AI</p>
-            
+<!--             
             <input type="email" placeholder="Email" class="login-input" id="email" required>
             
             <div class="password-container">
                 <input type="password" placeholder="Password" class="login-input" id="password" required>
                 <span class="toggle-password" onclick="togglePassword()">
                     <i class="fas fa-eye" id="eyeIcon"></i>
-                </span>
-            </div>
+                </span> -->
+            <!-- </div> --> 
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Email" class="login-input" required>
+                
+                <div class="password-container">
+                    <input type="password" name="password" placeholder="Password" class="login-input" required>
+                    <span class="toggle-password" onclick="togglePassword()">
+                        <i class="fas fa-eye" id="eyeIcon"></i>
+                    </span>
+                </div>
+                
+                <button type="submit" class="login-submit">Login</button>
+            </form>
             
-            <button class="login-submit" onclick="validateLogin()">Login</button>
-            
-            <p class="forgot-password"><a href="#">Forgot Password?</a></p>
-            <p class="signup-link">New here? <a href="signup.html">Sign up</a></p>
-        </div>
+            <!-- <button class="login-submit" onclick="validateLogin()">Login</button> -->
+            <p class="forgot-password"><a href="{% url 'forget_password' %}">Forgot Password?</a></p>
+            <!-- <p class="forgot-password"><a href="#">Forgot Password?</a></p> -->
+            <p class="signup-link">New here?  <a href="{% url 'signup' %}">Sign up</a></p>
     </div>
 </body>
 </html>
@@ -254,7 +90,6 @@
     background: rgba(211, 84, 0, 0.2);
 }
 
-
 body {
     background: url('{% static "images/bg.jpg" %}') no-repeat center center/cover;
     display: flex;
@@ -285,24 +120,13 @@ body {
 }
 
 .login-box {
-    width: 400px;
+    width: 500px;
     background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
+    padding: 50px;
     border-radius: 10px;
     text-align: center;
     position: relative;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.close-login {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #D35400;
 }
 
 .login-input {
@@ -354,7 +178,22 @@ body {
 
 .forgot-password a:hover, .signup-link a:hover {
     text-decoration: underline;
+} 
+.message-box {
+    text-align: center;
+    margin-top: 10px;
 }
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
 </style>
 
 <script>
@@ -369,24 +208,19 @@ function validateLogin() {
 
     if (email === "test@gmail.com" && password === "1234") {
         alert("Login Successful! Redirecting...");
-        window.location.href = "index.html";
+        window.location.href = "/dashboard/"; // ✅ Redirect to home page
     } else {
         alert("Invalid credentials. Please try again.");
     }
 }
 
 function closeLogin() {
-    document.getElementById("loginPopup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-    // window.location.href = "home.html"; 
-    window.location.href = "/users/login/";
-
+    window.location.href = "/home/";
 }
+
 function goBack() {
-    window.location.href = "/users/login/";
- // Redirects to home page
-}
-
+        window.location.href = "{% url 'home' %}";  
+    }
 
 function togglePassword() {
     let passwordField = document.getElementById("password");
@@ -402,3 +236,4 @@ function togglePassword() {
     }
 }
 </script>
+

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'chatbot',
-]
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,8 +54,10 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    'django.middleware.clickjacking.XFrameOptionsMiddleware', 
+    'allauth.account.middleware.AccountMiddleware',
+] 
+
 
 ROOT_URLCONF = 'krishna.urls'
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -84,17 +92,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'krishna_db',   # Database name
-#         'USER': 'postgres',      # Your PostgreSQL username
-#         'PASSWORD': 'your_password',  # Your PostgreSQL password
-#         'HOST': 'localhost',     # PostgreSQL is running locally
-#         'PORT': '5432',          # Default PostgreSQL port
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -124,16 +121,54 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = True 
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "users" / "static",
+]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': 'YOUR_GOOGLE_CLIENT_ID',
+            'secret': 'YOUR_GOOGLE_CLIENT_SECRET',
+            'key': ''
+        }
+    }
+}
+SOCIALACCOUNT_PROVIDERS['github'] = {
+    'APP': {
+        'client_id': 'YOUR_GITHUB_CLIENT_ID',
+        'secret': 'YOUR_GITHUB_CLIENT_SECRET',
+        'key': ''
+    }
+}
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'krishnaai.help@gmail.com'
+EMAIL_HOST_PASSWORD = 'fnigyctijtsksgeh'  # Use App Password if 2FA is enabled
+# EMAIL_HOST_PASSWORD = 'fnigyctijtsksgeh'  # Use App Password if 2FA is enabled

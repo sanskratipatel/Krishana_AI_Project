@@ -15,7 +15,10 @@ chatbot_project/
 │   │── urls.py            # URL routing for users
 │   │── templates/         # Folder for HTML pages
 │   │   │── login.html     # Login page
-│   │   │── signup.html    # Signup page
+│   │   │── signup.html  
+|   |   |- Forget-password.html  
+|   |   |- home.html
+|   |   |- change-password.html  # Signup page
 │   │── static/            # Folder for CSS & JS files
 │   │   │── css/
 │   │   │   │── style.css  # Styling for login/signup
